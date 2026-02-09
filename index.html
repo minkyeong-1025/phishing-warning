@@ -46,31 +46,6 @@
         <a href="#" id="backBtn" class="btn">앱으로 돌아가기</a>
     </div>
 </div>
-
-<script>
-  // 버튼 요소를 선택합니다.
-  const backBtn = document.getElementById('backBtn');
-
-  if (backBtn) {
-    backBtn.addEventListener('click', function(e) {
-      e.preventDefault(); // 기본 링크 동작 방지
-
-      // 1. 부모 창(원래 앱)으로 'return-to-app' 신호를 보냅니다.
-      if (window.opener) {
-        window.opener.postMessage('return-to-app', '*');
-      }
-
-      // 2. 약간의 시차(100ms)를 두고 창을 닫아 신호가 전달될 시간을 줍니다.
-      setTimeout(() => {
-        window.close();
-        
-        // 만약 창이 자동으로 닫히지 않는 환경(일반 브라우저 탭 등)이라면 메인으로 이동
-        if (!window.closed) {
-           window.location.href = '/'; 
-        }
-      }, 100);
-    });
-  }
-</script>
 </body>
 </html>
+
