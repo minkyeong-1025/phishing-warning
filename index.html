@@ -46,6 +46,24 @@
         <a href="#" class="btn" onclick="window.close();">앱으로 돌아가기</a>
     </div>
 </div>
-
+<script>
+  // 클래스 이름이 'btn'인 모든 요소를 찾아서 클릭 이벤트를 추가합니다.
+  document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      // 부모 창(원래 앱)이 존재하는지 확인
+      if (window.opener) {
+        // 부모 창으로 'return-to-app'이라는 신호를 보냅니다.
+        window.opener.postMessage('return-to-app', '*');
+        
+        // 현재 창(피싱 경고창)을 닫습니다.
+        window.close();
+      } else {
+        // 만약 부모 창 정보가 없다면 메인 페이지로 이동 (예비책)
+        window.location.href = '/'; 
+      }
+    });
+  });
+</script>
 </body>
+
 </html>
